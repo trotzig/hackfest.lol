@@ -6,21 +6,14 @@ module.exports = function createHTML({ emojis, animal, auraGradient, backgroundC
       <style type="text/css">
         body {
           text-align: center;
-        }
-        .layout {
-          display: grid;
-          grid-template-columns: 1fr 2fr 1fr;
-          column-gap: 30px;
-        }
-        .emojis {
-          font-size: 100px;
-        }
-        .spirit-animal {
-          height: 200px;
-        }
-        .image {
-          position: relative;
-          display: inline-block;
+          background-image: url(snapshot.jpg);
+          background-size: cover;
+          background-repeat: no-repeat;
+          color: #ffffff;
+          font-family: papyrus;
+          font-size: 30px;
+          line-height: 1.2;
+          padding: 30px;
         }
         .aura {
           position: absolute;
@@ -30,33 +23,42 @@ module.exports = function createHTML({ emojis, animal, auraGradient, backgroundC
           bottom: 0;
           background: ${auraGradient};
         }
+
+        .emojis-wrapper, .spirit-animal-wrapper {
+          position: relative;
+        }
+
+        .emojis {
+          font-size: 70px;
+        }
+        .spirit-animal-wrapper {
+          position: absolute;
+          right: 20px;
+          bottom: 20px;
+        }
+        .spirit-animal {
+          height: 200px;
+        }
+        .image {
+          position: relative;
+          display: inline-block;
+        }
         .image img {
           max-height: 400px;
         }
       </style>
       <body>
-        <h1>Oraklet under bron</h1>
-
-        <div class="layout">
-        <div>
+        <div class="aura"></div>
+        <div class="emojis-wrapper">
           <h2>Dina spirit-emojis</h2>
           <div class="emojis">
             ${emojis.join(' ')}
           </div>
         </div>
 
-        <div>
-          <h2>Aura</h2>
-          <div class="image">
-            <img src="snapshot.jpg">
-            <div class="aura"></div>
-          </div>
-        </div>
-
-        <div>
-          <h2>Ditt spirit-animal: ${animal}</h2>
+        <div class="spirit-animal-wrapper">
+          <h2>Ditt spirit-animal:<br> ${animal}</h2>
           <img class="spirit-animal" src="spirit-animals/${animal}">
-          <p>${animal}</p>
         </div>
       </body>
     </html>
