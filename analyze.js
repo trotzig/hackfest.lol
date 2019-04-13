@@ -11,6 +11,9 @@ module.exports = async function analyze() {
   const client = new vision.ImageAnnotatorClient();
 
   // Performs label detection on the image file
-  const [result] = await client.labelDetection('./snapshot.jpg');
+  const [result] = await client.annotateImage({
+    image: { source: { filename: 'snapshot.jpg' } },
+    features: [{ type: 'LABEL_DETECTION' }, { type: 'IMAGE_PROPERTIES' }],
+  });
   return result;
 };
