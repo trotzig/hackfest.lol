@@ -23,6 +23,8 @@
   },
   "homepage": "https://github.com/trotzig/hackfest.lol#readme",
   "dependencies": {
-    "@google-cloud/vision": "^0.25.0"
+    "@google-cloud/vision": "^0.25.0",
+    "axios": "^0.18.0",
+    "request": "^2.88.0"
   }
 }

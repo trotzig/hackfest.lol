@@ -1,37 +1,33 @@
 const fs = require('fs');
 const path = require('path');
+const axios = require('axios');
 
-process.env.GOOGLE_APPLICATION_CREDENTIALS = path.resolve(
-  __dirname,
-  'googleCredentials.json',
-);
+async function run(labels) {
+  const descs = labels.map(label => label.description);
 
-const crypto = require('crypto');
-const randomFromArray = require('./randomFromArray');
-const vision = require('@google-cloud/vision');
+  const tokens = [];
+  descs.forEach(desc => tokens.push(...desc.toLowerCase().split(' ')));
+  console.log(tokens);
 
-const emojis = {
-  smiling: ['🙂', '😊', '😆'],
-  notSmiling: ['😦', '🤧', '😯'],
-};
-function createHash(data) {
-  return crypto
-    .createHash('md5')
-    .update(data)
-    .digest('hex');
+  const all = await Promise.all(
+    tokens.map(async token => {
+      const res = await axios.get(
+        `https://www.emojidex.com/api/v1/search/emoji?code_cont=${encodeURIComponent(
+          token,
+        )}`,
+      );
+      if (res.data.emoji.length) {
+        const emoji = res.data.emoji.find(({ moji }) => moji !== null);
+        if (emoji) {
+          console.log(token, emoji.moji.length)
+          return emoji.moji;
+        }
+      }
+    }),
+  );
+  const filtered = all.filter(Boolean);
+  return Array.from(new Set(filtered));
 }
-async function run() {
-  console.log(randomFromArray(emojis.smiling));
-
-  // Creates a client
-  const client = new vision.ImageAnnotatorClient();
-
-  // Performs label detection on the image file
-  const [result] = await client.labelDetection('./snapshot.jpg');
-  const labels = result.labelAnnotations;
-  console.log('Labels:');
-  labels.forEach(label => console.log(label.description));
-}
-run().catch(e => console.error(e));
+module.exports = run;
 
 // open chrome full screen // /usr/bin/osascript -e "tell application \"Google Chrome\"" -e "activate" -e "make new window" -e "tell application \"System Events\"" -e "keystroke \"f\" using {control down, command down}" -e "end tell" -e "end tell"
