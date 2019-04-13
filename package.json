@@ -10,10 +10,19 @@
     "type": "git",
     "url": "git+https://github.com/trotzig/hackfest.lol.git"
   },
+  "prettier": {
+    "trailingComma": "all",
+    "tabWidth": 2,
+    "semi": true,
+    "singleQuote": true
+  },
   "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/trotzig/hackfest.lol/issues"
   },
-  "homepage": "https://github.com/trotzig/hackfest.lol#readme"
+  "homepage": "https://github.com/trotzig/hackfest.lol#readme",
+  "dependencies": {
+    "@google-cloud/vision": "^0.25.0"
+  }
 }
