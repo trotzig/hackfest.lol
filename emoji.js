@@ -29,7 +29,7 @@ function shuffle(a) {
 
 async function run(labels) {
   const descs = labels.map(label => label.description);
-
+  console.log(descs);
   const allTokens = [];
   descs.forEach(desc => allTokens.push(...desc.toLowerCase().split(' ')));
   const ignoredTokens = ['head', 'light'];

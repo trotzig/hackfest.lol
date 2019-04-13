@@ -41,6 +41,9 @@ const auras = [
 ];
 
 async function run() {
+  await exec('open countdown.html');
+  await exec('say "Hey kompees! Yag air orahklet under brewn. Wah moody doo air\!  Kohla new in ee kawmehrawn\! "');
+
   await exec('open progress.html');
   await exec('imagesnap -w 1.00');
 
@@ -56,6 +59,27 @@ async function run() {
   console.log(emojis);
   //await exec('/usr/bin/osascript -e "tell application \"Google Chrome\"" -e "activate" -e "make new window" -e "tell application \"System Events\"" -e "keystroke \"f\" using {control down, command down}" -e "end tell" -e "end tell"');
   await exec('open index.html');
+ 
+  if(props.labelAnnotations.some((label) => label.description === 'Glasses' )){
+    await exec(`say "snygga glahsehgon\!"`);
+  }
+
+  if(props.labelAnnotations.some((label) => label.description === 'Hat' )){
+    await exec(`say "snygga hat\!"`);
+  }
+
+
+
+  await exec('say "Yag hawr photographerat deen aura, den air bombastic"');
+
+  await exec('say "din framteed ser... well... ehrm... intressant ewt\! Hair air deen eeh awla fawll"');
+
+  await exec(`say ${emojis.join(' ')}`);
+
+  await exec(`say "Din spirit animal air en ${animal}\!"`);
+
+  await exec('say "Tuck fur may, toodles"');
+
   console.log('after');
 }
 
