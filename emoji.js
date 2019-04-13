@@ -12,7 +12,6 @@ const additional = [
   '💻',
   '🌈',
   '🏂',
-  '☀️',
   '🌋',
   '👻',
   '👁',
@@ -33,7 +32,8 @@ async function run(labels) {
 
   const allTokens = [];
   descs.forEach(desc => allTokens.push(...desc.toLowerCase().split(' ')));
-  const tokens = allTokens.filter(t => t !== 'head');
+  const ignoredTokens = ['head', 'light'];
+  const tokens = allTokens.filter(t => !ignoredTokens.includes(t));
 
   const all = await Promise.all(
     tokens.map(async token => {

@@ -20,6 +20,13 @@ module.exports = function createHTML({
           line-height: 1.2;
           padding: 30px;
         }
+        .title {
+          font-size: 30px;
+          position: absolute;
+          top: 40px;
+          left: 20px;
+          transform: rotate(-16deg);
+        }
         .aura {
           position: absolute;
           top: 0;
@@ -62,6 +69,7 @@ module.exports = function createHTML({
       </style>
       <body>
         <div class="aura"></div>
+        <h1 class="title">Oraklet under bron ™</h1>
         <div class="emojis-wrapper">
           <h2>Din framtid i emojis</h2>
           <div class="emojis">

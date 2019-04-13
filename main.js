@@ -41,6 +41,7 @@ const auras = [
 ];
 
 async function run() {
+  await exec('open progress.html');
   await exec('imagesnap -w 1.00');
 
   const props = await analyze();
