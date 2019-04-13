@@ -20,7 +20,7 @@ async function run() {
   const props = await analyze();
   const emojis = await emoji(props.labelAnnotations);
   const { stdout: animal } = await exec(
-    'ls spirit-animals | sort -R | tail -$N | head -1',
+    'ls spirit-animals | sort -R | head -1',
   );
   // const { red, green, blue } = props.imagePropertiesAnnotation.dominantColors.colors[0].color;
 
