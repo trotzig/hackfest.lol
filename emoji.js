@@ -1,13 +1,39 @@
-const fs = require('fs');
-const path = require('path');
 const axios = require('axios');
+
+const randomFromArray = require('./randomFromArray');
+
+const additional = [
+  '💩',
+  '🥦',
+  '🦕',
+  '💉',
+  '🚑',
+  '💘',
+  '💻',
+  '🌈',
+  '🏂',
+  '☀️',
+  '🌋',
+  '👻',
+  '👁',
+  '💍',
+  '🐣',
+  '👮',
+];
+function shuffle(a) {
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
 
 async function run(labels) {
   const descs = labels.map(label => label.description);
 
-  const tokens = [];
-  descs.forEach(desc => tokens.push(...desc.toLowerCase().split(' ')));
-  console.log(tokens);
+  const allTokens = [];
+  descs.forEach(desc => allTokens.push(...desc.toLowerCase().split(' ')));
+  const tokens = allTokens.filter(t => t !== 'head');
 
   const all = await Promise.all(
     tokens.map(async token => {
@@ -19,14 +45,24 @@ async function run(labels) {
       if (res.data.emoji.length) {
         const emoji = res.data.emoji.find(({ moji }) => moji !== null);
         if (emoji) {
-          console.log(token, emoji.moji)
+          console.log(token, emoji.moji);
           return emoji.moji;
         }
       }
     }),
   );
   const filtered = all.filter(Boolean);
-  return Array.from(new Set(filtered));
+
+  const set = new Set(filtered);
+
+  while (set.size < 12) {
+    set.add(randomFromArray(additional));
+  }
+
+  const ret = Array.from(set);
+  console.log(ret, typeof ret);
+  shuffle(ret);
+  return ret;
 }
 module.exports = run;
 

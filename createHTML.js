@@ -1,6 +1,11 @@
 const fs = require('fs');
 
-module.exports = function createHTML({ emojis, animal, auraGradient, backgroundColor }) {
+module.exports = function createHTML({
+  emojis,
+  animal,
+  auraGradient,
+  auraText,
+}) {
   const html = `
     <html>
       <style type="text/css">
@@ -36,6 +41,14 @@ module.exports = function createHTML({ emojis, animal, auraGradient, backgroundC
           right: 20px;
           bottom: 20px;
         }
+
+        .text {
+          position: absolute;
+          left: 20px;
+          bottom: 20px;
+          width: 25%;
+
+        }
         .spirit-animal {
           height: 200px;
         }
@@ -50,7 +63,7 @@ module.exports = function createHTML({ emojis, animal, auraGradient, backgroundC
       <body>
         <div class="aura"></div>
         <div class="emojis-wrapper">
-          <h2>Dina spirit-emojis</h2>
+          <h2>Din framtid i emojis</h2>
           <div class="emojis">
             ${emojis.join(' ')}
           </div>
@@ -60,9 +73,13 @@ module.exports = function createHTML({ emojis, animal, auraGradient, backgroundC
           <h2>Ditt spirit-animal:<br> ${animal}</h2>
           <img class="spirit-animal" src="spirit-animals/${animal}">
         </div>
+
+        <div class="text">
+          "${auraText}"
+        </div>
       </body>
     </html>
   `;
 
   fs.writeFileSync('index.html', html, 'utf-8');
-}
+};
