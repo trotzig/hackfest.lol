@@ -1,8 +1,3 @@
-#include <LiquidCrystal.h>
-
-LiquidCrystal lcd(8, 9, 4, 5, 6, 7);
-
-
 // digital pin 2 has a pushbutton attached to it. Give it a name:
 int pushButton = 2;
 int buttonState = 0;

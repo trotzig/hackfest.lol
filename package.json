@@ -25,6 +25,7 @@
   "dependencies": {
     "@google-cloud/vision": "^0.25.0",
     "axios": "^0.18.0",
-    "request": "^2.88.0"
+    "request": "^2.88.0",
+    "serialport": "^7.1.4"
   }
 }

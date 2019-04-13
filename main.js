@@ -59,4 +59,6 @@ async function run() {
   console.log('after');
 }
 
-run().catch(e => console.error(e));
+//run().catch(e => console.error(e));
+
+module.exports = run;
