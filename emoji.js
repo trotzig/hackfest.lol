@@ -19,7 +19,7 @@ async function run(labels) {
       if (res.data.emoji.length) {
         const emoji = res.data.emoji.find(({ moji }) => moji !== null);
         if (emoji) {
-          console.log(token, emoji.moji.length)
+          console.log(token, emoji.moji)
           return emoji.moji;
         }
       }

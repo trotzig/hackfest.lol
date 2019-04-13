@@ -8,6 +8,8 @@ async function run() {
   await exec('imagesnap -w 1.00');
   const props = await analyze();
   const emojis = await emoji(props.labelAnnotations);
+  const animal = await exec('ls spirit\ animals/ | sort -R | tail -$N | head -1');
+  console.log(animal);
   await createHTML({ emojis });
   console.log(emojis);
   //await exec('/usr/bin/osascript -e "tell application \"Google Chrome\"" -e "activate" -e "make new window" -e "tell application \"System Events\"" -e "keystroke \"f\" using {control down, command down}" -e "end tell" -e "end tell"');

@@ -6,11 +6,18 @@ module.exports = function createHTML({ emojis }) {
       <style type="text/css">
         .emojis {
           font-size: 100px;
+          text-align: center;
+        }
+        .image img {
+          max-height: 400px;
         }
       </style>
       <body>
         <div class="emojis">
           ${emojis.join(' ')}
+        </div>
+        <div class="image">
+          <img src="snapshot.jpg">
         </div>
       </body>
     </html>
